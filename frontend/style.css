@@ -10,8 +10,8 @@
     --font-mono: "JetBrains Mono", monospace;
     
     --glass-bg: rgba(255, 255, 255, .03);
-    --glass-border: rgba(255, 255, 255, .08);
-    --glass-border-hover: rgba(255, 255, 255, .2);
+    --glass-border: rgba(255, 255, 255, .16);
+    --glass-border-hover: rgba(255, 255, 255, .35);
     
     --accent-blue: #38bdf8;
     --accent-violet: #a78bfa;
@@ -107,9 +107,9 @@ body {
 }
 
 .header-icon-svg {
-    color: var(--accent-blue);
+    color: #ffffff;
     stroke-width: 1.5;
-    filter: drop-shadow(0 0 8px var(--blue-glow));
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.25));
 }
 
 .subtitle {
@@ -272,13 +272,13 @@ input:checked + .toggle-slider .toggle-option-right {
 /* Cards Design System with Running Border Beam */
 .glass-card {
     position: relative;
-    background: rgba(255, 255, 255, 0.05); /* fallback border color */
-    padding: 1px; /* border thickness */
+    background: rgba(255, 255, 255, 0.16); /* More defined fallback border color */
+    padding: 1.5px; /* Thicker border padding to make edges defined */
     border-radius: 32px;
     overflow: hidden;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
     transition: transform .5s cubic-bezier(.16,1,.3,1), border-color 0.5s ease;
-    --beam-color: var(--accent-blue); /* Default beam color */
+    --beam-color: #ffffff; /* White laser beam */
 }
 
 /* Traveling Laser Beam Effect */
@@ -287,12 +287,12 @@ input:checked + .toggle-slider .toggle-option-right {
     position: absolute;
     width: 200px;
     height: 200px;
-    background: radial-gradient(circle, var(--beam-color) 0%, rgba(56, 189, 248, 0.2) 30%, transparent 70%);
+    background: radial-gradient(circle, var(--beam-color) 0%, rgba(255, 255, 255, 0.25) 30%, transparent 70%);
     filter: blur(8px);
     animation: move-beam 8s linear infinite;
     pointer-events: none;
     z-index: 1;
-    opacity: 0.85;
+    opacity: 0.95;
 }
 
 /* Staggered animation delays for the cards to make the page feel alive */
@@ -307,15 +307,6 @@ input:checked + .toggle-slider .toggle-option-right {
 }
 .results-card::before {
     animation-delay: -3s;
-}
-
-/* State overrides for border beams */
-.glass-card.results-blocked-border {
-    --beam-color: var(--accent-red);
-}
-
-.glass-card.sandbox-active-border {
-    --beam-color: var(--accent-violet);
 }
 
 .glass-card:hover {
@@ -343,23 +334,12 @@ input:checked + .toggle-slider .toggle-option-right {
 }
 
 .card-icon-svg {
-    color: var(--accent-blue);
+    color: #ffffff;
     stroke-width: 1.5;
     display: inline-block;
     vertical-align: middle;
-    filter: drop-shadow(0 0 5px var(--blue-glow));
+    filter: drop-shadow(0 0 5px rgba(255, 255, 255, 0.2));
     transition: color 0.3s;
-}
-
-/* If parent has red/violet beam overrides, update icon colors */
-.results-blocked-border .card-icon-svg {
-    color: var(--accent-red);
-    filter: drop-shadow(0 0 5px var(--red-glow));
-}
-
-.sandbox-active-border .card-icon-svg {
-    color: var(--accent-violet);
-    filter: drop-shadow(0 0 5px var(--violet-glow));
 }
 
 .card-header h3 {
