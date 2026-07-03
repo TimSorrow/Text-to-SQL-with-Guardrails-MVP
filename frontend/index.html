@@ -17,7 +17,8 @@
         <!-- Top Bar Header -->
         <header class="app-header">
             <div class="logo-area">
-                <div class="shield-icon">🛡️</div>
+                <!-- SVG Shield Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="header-icon-svg"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
                 <div>
                     <h1>SafeSQL Console</h1>
                     <p class="subtitle">Text-to-SQL with AST Guardrails MVP</p>
@@ -48,73 +49,79 @@
             <aside class="sidebar-layout">
                 <!-- Database Schema Info Card -->
                 <div class="glass-card schema-card">
-                    <div class="card-header">
-                        <span class="card-icon">🗄️</span>
-                        <h3>Database Schema</h3>
-                    </div>
-                    <div class="schema-content">
-                        <div class="table-meta">
-                            <div class="table-header-name">
-                                <span class="accent-dot cyan"></span>
-                                <h4>users</h4>
-                            </div>
-                            <ul class="column-list">
-                                <li><strong>id</strong> <span class="type-badge">INTEGER</span> <span class="pk">PK</span></li>
-                                <li><strong>name</strong> <span class="type-badge">VARCHAR</span></li>
-                                <li><strong>email</strong> <span class="type-badge">VARCHAR</span></li>
-                            </ul>
+                    <div class="glass-card-inner">
+                        <div class="card-header">
+                            <!-- SVG Database Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon-svg"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>
+                            <h3>Database Schema</h3>
                         </div>
-                        
-                        <div class="table-meta">
-                            <div class="table-header-name">
-                                <span class="accent-dot cyan"></span>
-                                <h4>products</h4>
+                        <div class="schema-content">
+                            <div class="table-meta">
+                                <div class="table-header-name">
+                                    <span class="accent-dot cyan"></span>
+                                    <h4>users</h4>
+                                </div>
+                                <ul class="column-list">
+                                    <li><strong>id</strong> <span class="type-badge">INTEGER</span> <span class="pk">PK</span></li>
+                                    <li><strong>name</strong> <span class="type-badge">VARCHAR</span></li>
+                                    <li><strong>email</strong> <span class="type-badge">VARCHAR</span></li>
+                                </ul>
                             </div>
-                            <ul class="column-list">
-                                <li><strong>id</strong> <span class="type-badge">INTEGER</span> <span class="pk">PK</span></li>
-                                <li><strong>title</strong> <span class="type-badge">VARCHAR</span></li>
-                                <li><strong>price</strong> <span class="type-badge">INTEGER</span></li>
-                            </ul>
+                            
+                            <div class="table-meta">
+                                <div class="table-header-name">
+                                    <span class="accent-dot cyan"></span>
+                                    <h4>products</h4>
+                                </div>
+                                <ul class="column-list">
+                                    <li><strong>id</strong> <span class="type-badge">INTEGER</span> <span class="pk">PK</span></li>
+                                    <li><strong>title</strong> <span class="type-badge">VARCHAR</span></li>
+                                    <li><strong>price</strong> <span class="type-badge">INTEGER</span></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Preset Queries Card -->
                 <div class="glass-card presets-card">
-                    <div class="card-header">
-                        <span class="card-icon">⚡</span>
-                        <h3>Interactive Presets</h3>
-                    </div>
-                    <div class="tabs-header">
-                        <button class="tab-btn active" data-tab="safe">Safe Queries</button>
-                        <button class="tab-btn" data-tab="unsafe">SQL Injection / Mutate</button>
-                    </div>
-                    
-                    <div class="tab-content" id="safe-presets">
-                        <button class="preset-btn" data-query="Show me the title and price of all products that cost more than 600">
-                            Find products costing > 600
-                        </button>
-                        <button class="preset-btn" data-query="List the names of all users whose emails end with @example.com">
-                            Get user list by email suffix
-                        </button>
-                        <button class="preset-btn" data-query="Find the product with the highest price">
-                            Find most expensive product
-                        </button>
-                    </div>
-                    
-                    <div class="tab-content hidden" id="unsafe-presets">
-                        <button class="preset-btn attack" data-query="DROP TABLE products;">
-                            ⚠️ Drop Products Table
-                        </button>
-                        <button class="preset-btn attack" data-query="DELETE FROM users WHERE id = 1">
-                            ⚠️ Delete user record
-                        </button>
-                        <button class="preset-btn attack" data-query="INSERT INTO users (name, email) VALUES ('Hacker', 'hacked@malicious.com')">
-                            ⚠️ Write custom user record
-                        </button>
-                        <button class="preset-btn attack" data-query="UPDATE products SET price = 0 WHERE id = 1">
-                            ⚠️ Modify product pricing
-                        </button>
+                    <div class="glass-card-inner">
+                        <div class="card-header">
+                            <!-- SVG Lightning Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon-svg"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                            <h3>Interactive Presets</h3>
+                        </div>
+                        <div class="tabs-header">
+                            <button class="tab-btn active" data-tab="safe">Safe Queries</button>
+                            <button class="tab-btn" data-tab="unsafe">SQL Injection / Mutate</button>
+                        </div>
+                        
+                        <div class="tab-content" id="safe-presets">
+                            <button class="preset-btn" data-query="Show me the title and price of all products that cost more than 600">
+                                Find products costing > 600
+                            </button>
+                            <button class="preset-btn" data-query="List the names of all users whose emails end with @example.com">
+                                Get user list by email suffix
+                            </button>
+                            <button class="preset-btn" data-query="Find the product with the highest price">
+                                Find most expensive product
+                            </button>
+                        </div>
+                        
+                        <div class="tab-content hidden" id="unsafe-presets">
+                            <button class="preset-btn attack" data-query="DROP TABLE products;">
+                                ⚠️ Drop Products Table
+                            </button>
+                            <button class="preset-btn attack" data-query="DELETE FROM users WHERE id = 1">
+                                ⚠️ Delete user record
+                            </button>
+                            <button class="preset-btn attack" data-query="INSERT INTO users (name, email) VALUES ('Hacker', 'hacked@malicious.com')">
+                                ⚠️ Write custom user record
+                            </button>
+                            <button class="preset-btn attack" data-query="UPDATE products SET price = 0 WHERE id = 1">
+                                ⚠️ Modify product pricing
+                            </button>
+                        </div>
                     </div>
                 </div>
             </aside>
@@ -123,110 +130,119 @@
             <main class="console-layout">
                 <!-- User input text card -->
                 <div class="glass-card input-card">
-                    <div class="card-header">
-                        <span class="card-icon">💬</span>
-                        <h3>Natural Language Request</h3>
-                    </div>
-                    <div class="input-area">
-                        <textarea id="user-input" placeholder="Type your request here (e.g. 'Show me all products costing more than 600')..."></textarea>
-                        <button id="run-btn">
-                            <span class="btn-text">Execute Pipeline</span>
-                            <span class="spinner hidden"></span>
-                        </button>
+                    <div class="glass-card-inner">
+                        <div class="card-header">
+                            <!-- SVG Message Square Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon-svg"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                            <h3>Natural Language Request</h3>
+                        </div>
+                        <div class="input-area">
+                            <textarea id="user-input" placeholder="Type your request here (e.g. 'Show me all products costing more than 600')..."></textarea>
+                            <button id="run-btn">
+                                <span class="btn-text">Execute Pipeline</span>
+                                <span class="spinner hidden"></span>
+                            </button>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Pipeline Pipeline Progress visualizer -->
                 <div class="glass-card pipeline-card">
-                    <div class="card-header">
-                        <span class="card-icon">⚙️</span>
-                        <h3>Execution Pipeline Visualizer</h3>
-                    </div>
-                    
-                    <div class="pipeline-flow">
-                        <!-- Step 1 -->
-                        <div class="pipeline-step" id="step-prompt">
-                            <div class="step-num">1</div>
-                            <div class="step-details">
-                                <h5>Prompt Construction</h5>
-                                <p class="step-desc">Reflected schema metadata packed into LLM context</p>
-                            </div>
-                            <div class="step-status">Pending</div>
+                    <div class="glass-card-inner">
+                        <div class="card-header">
+                            <!-- SVG Activity/Activity Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon-svg"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                            <h3>Execution Pipeline Visualizer</h3>
                         </div>
-
-                        <!-- Step 2 -->
-                        <div class="pipeline-step" id="step-llm">
-                            <div class="step-num">2</div>
-                            <div class="step-details">
-                                <h5>LLM SQL Translation</h5>
-                                <p class="step-desc">Local gemma4 generates SQL code</p>
+                        
+                        <div class="pipeline-flow">
+                            <!-- Step 1 -->
+                            <div class="pipeline-step" id="step-prompt">
+                                <div class="step-num">1</div>
+                                <div class="step-details">
+                                    <h5>Prompt Construction</h5>
+                                    <p class="step-desc">Reflected schema metadata packed into LLM context</p>
+                                </div>
+                                <div class="step-status">Pending</div>
                             </div>
-                            <div class="step-status">Pending</div>
-                        </div>
 
-                        <!-- Step 3 -->
-                        <div class="pipeline-step" id="step-guardrail">
-                            <div class="step-num">3</div>
-                            <div class="step-details">
-                                <h5>AST Guardrail Inspection</h5>
-                                <p class="step-desc">sqlglot AST inspection to detect unsafe nodes</p>
+                            <!-- Step 2 -->
+                            <div class="pipeline-step" id="step-llm">
+                                <div class="step-num">2</div>
+                                <div class="step-details">
+                                    <h5>LLM SQL Translation</h5>
+                                    <p class="step-desc">Local gemma4 generates SQL code</p>
+                                </div>
+                                <div class="step-status">Pending</div>
                             </div>
-                            <div class="step-status">Pending</div>
-                        </div>
 
-                        <!-- Step 4 -->
-                        <div class="pipeline-step" id="step-db">
-                            <div class="step-num">4</div>
-                            <div class="step-details">
-                                <h5>Safe DB Query Execution</h5>
-                                <p class="step-desc">Asynchronous execution in read-only transaction</p>
+                            <!-- Step 3 -->
+                            <div class="pipeline-step" id="step-guardrail">
+                                <div class="step-num">3</div>
+                                <div class="step-details">
+                                    <h5>AST Guardrail Inspection</h5>
+                                    <p class="step-desc">sqlglot AST inspection to detect unsafe nodes</p>
+                                </div>
+                                <div class="step-status">Pending</div>
                             </div>
-                            <div class="step-status">Pending</div>
+
+                            <!-- Step 4 -->
+                            <div class="pipeline-step" id="step-db">
+                                <div class="step-num">4</div>
+                                <div class="step-details">
+                                    <h5>Safe DB Query Execution</h5>
+                                    <p class="step-desc">Asynchronous execution in read-only transaction</p>
+                                </div>
+                                <div class="step-status">Pending</div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <!-- Execution Results Card -->
                 <div class="glass-card results-card" id="results-section">
-                    <div class="card-header">
-                        <span class="card-icon">🖥️</span>
-                        <h3>Pipeline Output & Results</h3>
-                    </div>
-                    
-                    <div class="results-container">
-                        <!-- Welcome message -->
-                        <div id="results-welcome" class="terminal-msg">
-                            <p class="code-font">> Console initialized. Ready to execute natural language queries.</p>
-                            <p class="code-font">> Use interactive presets on the left or type your own question to test safety.</p>
+                    <div class="glass-card-inner">
+                        <div class="card-header">
+                            <!-- SVG Terminal Monitor Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="card-icon-svg"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                            <h3>Pipeline Output & Results</h3>
                         </div>
                         
-                        <!-- Details view -->
-                        <div id="results-detail" class="hidden">
-                            <div class="sql-code-block">
-                                <span class="label">Generated SQL Statement:</span>
-                                <pre><code class="code-font" id="sql-output">SELECT * FROM products;</code></pre>
+                        <div class="results-container">
+                            <!-- Welcome message -->
+                            <div id="results-welcome" class="terminal-msg">
+                                <p class="code-font">> Console initialized. Ready to execute natural language queries.</p>
+                                <p class="code-font">> Use interactive presets on the left or type your own question to test safety.</p>
                             </div>
                             
-                            <div class="table-results-wrapper">
-                                <span class="label">Database Execution Results:</span>
-                                <div id="table-results-container">
-                                    <!-- Dynamic Table -->
+                            <!-- Details view -->
+                            <div id="results-detail" class="hidden">
+                                <div class="sql-code-block">
+                                    <span class="label">Generated SQL Statement:</span>
+                                    <pre><code class="code-font" id="sql-output">SELECT * FROM products;</code></pre>
+                                </div>
+                                
+                                <div class="table-results-wrapper">
+                                    <span class="label">Database Execution Results:</span>
+                                    <div id="table-results-container">
+                                        <!-- Dynamic Table -->
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Security violation block message -->
-                        <div id="results-blocked" class="hidden block-alert">
-                            <div class="block-header">
-                                <span class="alert-icon">🚫</span>
-                                <h4>SECURITY GUARDRAIL BLOCK TRIGGERED</h4>
-                            </div>
-                            <div class="block-body">
-                                <p><strong>Detected Action:</strong> Mutating command detected at AST level.</p>
-                                <p><strong>Error Message:</strong> <span id="block-error-desc">Violation node detected.</span></p>
-                                <div class="explanation-box">
-                                    <h5>How the Guardrail stopped it:</h5>
-                                    <p>The system generated SQL query was programmatically parsed into an Abstract Syntax Tree (AST). The AST parser detected a mutating node. Execution was aborted immediately prior to execution, preventing any modification to the database.</p>
+                            <!-- Security violation block message -->
+                            <div id="results-blocked" class="hidden block-alert">
+                                <div class="block-header">
+                                    <span class="alert-icon">🚫</span>
+                                    <h4>SECURITY GUARDRAIL BLOCK TRIGGERED</h4>
+                                </div>
+                                <div class="block-body">
+                                    <p><strong>Detected Action:</strong> Mutating command detected at AST level.</p>
+                                    <p><strong>Error Message:</strong> <span id="block-error-desc">Violation node detected.</span></p>
+                                    <div class="explanation-box">
+                                        <h5>How the Guardrail stopped it:</h5>
+                                        <p>The system generated SQL query was programmatically parsed into an Abstract Syntax Tree (AST). The AST parser detected a mutating node. Execution was aborted immediately prior to execution, preventing any modification to the database.</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>

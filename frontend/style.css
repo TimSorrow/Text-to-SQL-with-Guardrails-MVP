@@ -92,20 +92,24 @@ body {
     gap: 1.25rem;
 }
 
-.shield-icon {
-    font-family: var(--font-serif);
-    font-size: 1.5rem;
-    font-style: italic;
-    color: var(--text-primary);
-    filter: drop-shadow(0 0 8px var(--blue-glow));
-}
-
-.app-header h1 {
+.logo-area h1 {
     font-family: var(--font-serif);
     font-size: 1.25rem;
     font-weight: 400;
     letter-spacing: -0.02em;
     color: var(--text-primary);
+}
+
+.shield-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-icon-svg {
+    color: var(--accent-blue);
+    stroke-width: 1.5;
+    filter: drop-shadow(0 0 8px var(--blue-glow));
 }
 
 .subtitle {
@@ -265,34 +269,97 @@ input:checked + .toggle-slider .toggle-option-right {
     gap: 2.5rem;
 }
 
-/* Cards Design System */
+/* Cards Design System with Running Border Beam */
 .glass-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
-    border: 1px solid var(--glass-border);
+    position: relative;
+    background: rgba(255, 255, 255, 0.05); /* fallback border color */
+    padding: 1px; /* border thickness */
     border-radius: 32px;
-    padding: 2.5rem;
+    overflow: hidden;
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
-    transition: transform .5s cubic-bezier(.16,1,.3,1), border-color .5s ease;
+    transition: transform .5s cubic-bezier(.16,1,.3,1), border-color 0.5s ease;
+    --beam-color: var(--accent-blue); /* Default beam color */
+}
+
+/* Traveling Laser Beam Effect */
+.glass-card::before {
+    content: "";
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle, var(--beam-color) 0%, rgba(56, 189, 248, 0.2) 30%, transparent 70%);
+    filter: blur(8px);
+    animation: move-beam 8s linear infinite;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.85;
+}
+
+/* Staggered animation delays for the cards to make the page feel alive */
+.presets-card::before {
+    animation-delay: -2s;
+}
+.input-card::before {
+    animation-delay: -4s;
+}
+.pipeline-card::before {
+    animation-delay: -1s;
+}
+.results-card::before {
+    animation-delay: -3s;
+}
+
+/* State overrides for border beams */
+.glass-card.results-blocked-border {
+    --beam-color: var(--accent-red);
+}
+
+.glass-card.sandbox-active-border {
+    --beam-color: var(--accent-violet);
 }
 
 .glass-card:hover {
     transform: translateY(-5px);
-    border-color: var(--glass-border-hover);
+}
+
+.glass-card-inner {
+    background: #05070c;
+    border-radius: 31px;
+    padding: 2.5rem;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .card-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 2rem;
-    padding-bottom: 0;
-    border-bottom: none;
+    gap: 0.85rem;
+    margin-bottom: 0.5rem;
 }
 
-.card-icon {
-    font-size: 1.3rem;
+.card-icon-svg {
+    color: var(--accent-blue);
+    stroke-width: 1.5;
+    display: inline-block;
+    vertical-align: middle;
+    filter: drop-shadow(0 0 5px var(--blue-glow));
+    transition: color 0.3s;
+}
+
+/* If parent has red/violet beam overrides, update icon colors */
+.results-blocked-border .card-icon-svg {
+    color: var(--accent-red);
+    filter: drop-shadow(0 0 5px var(--red-glow));
+}
+
+.sandbox-active-border .card-icon-svg {
+    color: var(--accent-violet);
+    filter: drop-shadow(0 0 5px var(--violet-glow));
 }
 
 .card-header h3 {
@@ -381,7 +448,7 @@ input:checked + .toggle-slider .toggle-option-right {
 .tabs-header {
     display: flex;
     border-bottom: 1px solid var(--glass-border);
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.25rem;
 }
 
 .tab-btn {
@@ -756,6 +823,15 @@ table.results-table tr:last-child td {
     font-size: 0.8rem;
     color: var(--text-secondary);
     line-height: 1.5;
+}
+
+/* Keyframes for Rotating Border Beam */
+@keyframes move-beam {
+    0% { top: -100px; left: -100px; }
+    25% { top: -100px; left: calc(100% - 100px); }
+    50% { top: calc(100% - 100px); left: calc(100% - 100px); }
+    75% { top: calc(100% - 100px); left: -100px; }
+    100% { top: -100px; left: -100px; }
 }
 
 /* Spinner Utilities */

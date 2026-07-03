@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const sqlOutput = document.getElementById("sql-output");
     const tableResultsContainer = document.getElementById("table-results-container");
     const blockErrorDesc = document.getElementById("block-error-desc");
+    const resultsSection = document.getElementById("results-section");
 
     // Application state
     let isSandboxMode = modeToggle.checked;
@@ -64,12 +65,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     function updateStatus() {
+        const cards = document.querySelectorAll(".glass-card");
         if (isSandboxMode) {
             statusDot.className = "pulse-dot orange";
             statusText.innerText = "Offline Sandbox Mode (Simulated)";
+            cards.forEach(card => card.classList.add("sandbox-active-border"));
         } else {
             statusDot.className = "pulse-dot green";
             statusText.innerText = "Live Connection: Local gemma4 Active";
+            cards.forEach(card => card.classList.remove("sandbox-active-border"));
         }
     }
     
@@ -107,6 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Reset outputs
         resetPipelineStyles();
+        resultsSection.classList.remove("results-blocked-border");
         resultsWelcome.classList.add("hidden");
         resultsDetail.classList.add("hidden");
         resultsBlocked.classList.add("hidden");
@@ -173,6 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (isMutating) {
             setStepState(stepGuardrail, "failed", "Blocked");
             setStepState(stepDb, "failed", "Aborted");
+            resultsSection.classList.add("results-blocked-border");
             
             // Show blocked message
             blockErrorDesc.innerText = `Security Guardrail Violation: Mutating/Unsafe node type '${mutationType}' detected in query.`;
@@ -234,6 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 setStepState(stepLlm, "success", "Generated");
                 setStepState(stepGuardrail, "failed", "Blocked");
                 setStepState(stepDb, "failed", "Aborted");
+                resultsSection.classList.add("results-blocked-border");
 
                 blockErrorDesc.innerText = data.detail;
                 resultsBlocked.classList.remove("hidden");
