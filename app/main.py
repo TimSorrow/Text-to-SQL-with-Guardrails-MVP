@@ -1,11 +1,24 @@
 from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 from sqlalchemy.ext.asyncio import create_async_engine, async_sessionmaker, AsyncSession
 from app.core.config import settings
 from app.services.db_service import get_db_schema_text, execute_safe_query
 from app.services.sql_generator import generate_sql
 from app.services.guardrail_service import validate_sql_ast
+import os
 
 app = FastAPI(title="Text-to-SQL with Guardrails")
+
+# Configure CORS for sandbox/local cross-origin calls
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Database session setup
 engine = create_async_engine(settings.DATABASE_URL, echo=True)
@@ -14,6 +27,15 @@ async_session_factory = async_sessionmaker(bind=engine, expire_on_commit=False)
 async def get_db_session() -> AsyncSession:
     async with async_session_factory() as session:
         yield session
+
+# Mount the static frontend directory
+app.mount("/static", StaticFiles(directory="frontend"), name="static")
+
+@app.get("/")
+async def read_root():
+    """Serves the interactive portfolio dashboard UI."""
+    return FileResponse(os.path.join("frontend", "index.html"))
+
 
 @app.post("/v1/query")
 async def process_nl_query(user_query: str, db_session: AsyncSession = Depends(get_db_session)):
